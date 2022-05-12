@@ -7,6 +7,7 @@ import { css, Global } from '@emotion/react';
 const Layout = (props) => {
     return (
         <>
+            {/* Global tiene los estilos globales de todo lo que este dentro de LAYOUT */}
             <Global 
                 styles={css`
                     html {
@@ -35,14 +36,22 @@ const Layout = (props) => {
                     }
                 `}
             />
+
+            {/* Helmet contiene todo lo que esta antes del <body> */}
             <Helmet>
                 <title>
                     Gatsby Hotel
                 </title>
+                {/* Etiquetas sin label de cierre se cierran con /> ejem <link ... /> */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet" />
+                {/* <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet" /> */}
+                <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;1,700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" /> 
             </Helmet>
+            
+            {/* contiene hotel gatsby y el nav */}
             <Header />
+
+            {/* este props.children es el inyector de codigo para el contenido de LAYOUT */}
             { props.children }   
         </>
     )

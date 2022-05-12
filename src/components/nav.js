@@ -21,6 +21,7 @@ const NavLink = styled(Link)`
     padding: 1rem;
     margin-right: 1rem;
 
+    /* El ultimo componente de la derecha no tiene margen a la derecha */
     &:last-of-type {
         margin-right: 0;
     }

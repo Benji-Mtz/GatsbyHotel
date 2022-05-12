@@ -1,0 +1,123 @@
+# Consultas para traer todas las imagenes
+
+# Q1
+query {
+allFile(filter: { sourceInstanceName: { eq: "images"} }){
+		nodes {
+		    relativePath
+  	    }
+	}
+}
+
+# Result Q1
+{
+  "data": {
+    "allFile": {
+      "nodes": [
+        {
+          "relativePath": "gatsby-icon.png"
+        },
+        {
+          "relativePath": "gatsby-astronaut.png"
+        },
+        {
+          "relativePath": "mar.jpg"
+        },
+        {
+          "relativePath": "cancun.jpg"
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}
+
+# Q2
+query {
+allFile(filter: { sourceInstanceName: { eq: "images"} }){
+		nodes {
+		    relativePath
+                childrenImageSharp {
+			        fluid {
+                        src
+                }
+            }
+        }
+	}
+}
+
+# Result Q2
+{
+  "data": {
+    "allFile": {
+      "nodes": [
+        {
+          "relativePath": "gatsby-icon.png",
+          "childrenImageSharp": [
+            {
+              "fluid": {
+                "src": "/static/4a9773549091c227cd2eb82ccd9c5e3a/bc59e/gatsby-icon.png"
+              }
+            }
+          ]
+        },
+        {
+          "relativePath": "gatsby-astronaut.png",
+          "childrenImageSharp": [
+            {
+              "fluid": {
+                "src": "/static/6d91c86c0fde632ba4cd01062fd9ccfa/ee604/gatsby-astronaut.png"
+              }
+            }
+          ]
+        },
+        {
+          "relativePath": "mar.jpg",
+          "childrenImageSharp": [
+            {
+              "fluid": {
+                "src": "/static/8ce0c28410d871e6e97a213773b52167/14b42/mar.jpg"
+              }
+            }
+          ]
+        },
+        {
+          "relativePath": "cancun.jpg",
+          "childrenImageSharp": [
+            {
+              "fluid": {
+                "src": "/static/73d5e25db1c34ceb9e9ef69fa190f70e/14b42/cancun.jpg"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}
+
+# Consulta para traer solo una imagen
+query {
+	image: file(relativePath: { eq: "cancun.jpg" }) {
+	  sharp: childImageSharp {
+			fluid {
+			  srcSetWebp
+			}
+    }
+  }
+}
+
+{
+  "data": {
+    "image": {
+      "sharp": {
+        "fluid": {
+          "srcSetWebp": "/static/73d5e25db1c34ceb9e9ef69fa190f70e/61e93/cancun.webp 200w,\n/static/73d5e25db1c34ceb9e9ef69fa190f70e/1f5c5/cancun.webp 400w,\n/static/73d5e25db1c34ceb9e9ef69fa190f70e/58556/cancun.webp 800w,\n/static/73d5e25db1c34ceb9e9ef69fa190f70e/99238/cancun.webp 1200w,\n/static/73d5e25db1c34ceb9e9ef69fa190f70e/7c22d/cancun.webp 1600w,\n/static/73d5e25db1c34ceb9e9ef69fa190f70e/fd420/cancun.webp 4240w"
+        }
+      }
+    }
+  },
+  "extensions": {}
+}
+
